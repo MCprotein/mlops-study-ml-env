@@ -1,5 +1,3 @@
-version:  '3'
-
 services:
   datascience-notebook:
     image: jupyter/datascience-notebook:python-3.10.9
@@ -7,8 +5,8 @@ services:
     hostname: jupyter-mlops-study
     restart: always
     volumes:
-      - ${PWD}/data/work:/home/jovyan
-      - ${PWD}/data/requirements:/tmp
+      - ./data/work:/home/jovyan
+      - ./data/requirements:/tmp
     ports:
       - "8888:8888"
     environment:

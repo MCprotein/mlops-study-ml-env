@@ -1,20 +1,18 @@
-version: '3'
-
 services:
   db:
     image: mariadb:10.8.2-rc-focal
     container_name: mariadb
     hostname: mariadb-mlops-study
     volumes:
-      - ${PWD}/data/mlops_table_data:/tmp
-      - ${PWD}/data/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./data/mlops_table_data:/tmp
+      - ./data/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     restart: always
     ports:
       - "3306:3306"
     environment:
       MARIADB_ROOT_PASSWORD: root
     networks:
-      mlops_study_network:
+      - mlops_study_network
   adminer:
     image: adminer
     container_name: mariadb_adminer
@@ -23,8 +21,9 @@ services:
     ports:
       - "8089:8080"
     networks:
-      mlops_study_network:
+      - mlops_study_network
+
 networks:
   mlops_study_network:
     name: mlops_study_network
-    external: true
+    # external: true
